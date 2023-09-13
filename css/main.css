@@ -1,0 +1,404 @@
+.hide {
+    display: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #2f2fa2;
+}
+
+textarea {
+    outline: none;
+    min-height: 80px;
+    min-width: 80px;
+    z-index: 3;
+}
+
+#app {
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+}
+
+.mainMenuButton {
+    background-color: #553d67;
+    border-radius: 20px;
+    margin: 10px;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 235%;
+    user-select: none;
+    cursor: auto;
+    transition: .3s;
+}
+
+.active {
+    background-color: #f64c72;
+    border: 3px solid #b6b6b6;
+    transform: translateY(1px);
+}
+
+.mainMenuButton:hover {
+    background-color: #99738e;
+}
+
+.mainMenuButton:active {
+    transform: translateY(1px);
+}
+
+.calcInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    margin: 20px;
+}
+
+.calcInput textarea {
+    text-align: center;
+    height: 30px;
+    margin: 8px;
+    outline: none;
+}
+
+.resultContainer>textarea,
+.polyResult {
+    text-align: center;
+    font-size: 15px;
+    height: 30px;
+    margin: 8px;
+}
+
+.newPoly {
+    z-index: 1;
+}
+
+.result,
+.polyResult {
+    background-color: #bebeb2;
+    z-index: 1;
+}
+
+
+.calcButtons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 85px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px;
+    margin-bottom: 5px;
+}
+
+.calcButtons>div {
+    width: 100%;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.operand,
+.polyOperand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 70px;
+    background-color: #8c8c8c;
+    margin: 0 10px 10px;
+    user-select: none;
+    transition: 0.5s;
+}
+
+.operand:hover,
+.polyOperand:hover,
+.resultButton:hover {
+    cursor: pointer;
+    background-color: #f3f3f3;
+}
+
+.operand:active,
+.polyOperand:active,
+.resultButton:active {
+    transform: translateY(1px);
+}
+
+.resultContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.resultButton {
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    background-color: #c2c2c2;
+    text-align: center;
+    line-height: 160%;
+    font-size: 40px;
+}
+
+#polyomialCalculator,
+#calculator {
+    background-color: #2c2c2c;
+}
+
+#canvas2D,
+#canvas3D {
+    cursor: grab;
+    border: 1px solid black;
+    border-radius: 60px;
+}
+
+#canvas2D:active,
+#canvas3D:active {
+    cursor: grabbing;
+}
+
+#graph2D,
+#graph3D {
+    max-height: 800px;
+}
+
+.funcs-сontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.funcBlock input::-webkit-outer-spin-button,
+.funcBlock input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+.funcBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    width: 80%;
+}
+
+.funcBlock input {
+    margin: 1px;
+    text-align: center;
+    outline: none;
+}
+
+.container,
+.container3D {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(89, 94, 159);
+    width: 0;
+    height: 800px;
+    left: 1px;
+    top: -800px;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 18px;
+    transition: 0.1s;
+}
+
+.container>.block {
+    width: 100%;
+    max-height: 100%;
+}
+
+.containerActive {
+    width: 400px;
+}
+
+.menuGraphButton,
+.menuGraph3DButton {
+    position: absolute;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    top: 0;
+    right: -40px;
+    height: 30px;
+    width: 40px;
+    background-color: #f64c72;
+    cursor: pointer;
+}
+
+.figuresCheckBoxes {
+    text-align: center;
+    width: 350px;
+    height: 22px;
+    background-color: #88647e;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.funcMenu,
+.figuresMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 100%;
+}
+
+.deleteFunc {
+    width: 15px;
+    height: 15px;
+    background-color: azure;
+    text-align: center;
+    line-height: 15px;
+    user-select: none;
+    border-radius: 5px;
+}
+
+.deleteFunc:hover {
+    background-color: #fd3939;
+}
+
+.addFunction,
+.addFigure {
+    width: 190px;
+    height: 30px;
+    margin-top: 5px;
+    text-align: center;
+    background-color: #553d67;
+    border-radius: 5px;
+    line-height: 30px;
+    user-select: none;
+    transition: .1s;
+}
+
+.addFunction:hover,
+.addFigure:hover {
+    background-color: #99738e;
+    cursor: pointer;
+}
+
+.addFunction:active,
+.addFigure:active {
+    transform: translateY(2px);
+}
+
+.deleteFunc:hover {
+    cursor: pointer;
+}
+
+.switch-btn {
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    border-radius: 20px;
+    background: #bfbfbf;
+    z-index: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition-duration: 100ms;
+}
+
+.switch-btn::after {
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 17px;
+    background: #fff;
+    left: 0;
+    transition-duration: 100ms;
+    position: absolute;
+    z-index: 1;
+}
+
+.switch-on {
+    background: #03bd60;
+}
+
+.switch-on::after {
+    left: 15px;
+}
+
+.inputColor {
+    border-radius: 50%;
+    background-color: transparent;
+    height: 25px;
+    width: 30px;
+    border: none;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.inputColor::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.inputColor::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.funcBlock>.inputA,
+.funcBlock>.inputB {
+    width: 30px;
+}
+
+.inputWidth,
+.inputFunc {
+    width: 60px;
+}
+
+.funcBlock>.inputA,
+.funcBlock>.inputB,
+.inputWidth,
+.inputFunc {
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+#figuresList {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 190px;
+    text-align: center;
+    outline: none;
+}
+
+#figuresList>div {
+    background-color: #99738e;
+    margin: 4px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#figuresList>div:hover {
+    background-color: white;
+}
+
+#figuresList>div:active {
+    transform: translateY(1px);
+}
