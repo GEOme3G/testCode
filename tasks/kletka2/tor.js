@@ -42,72 +42,75 @@ class Tor extends Figure {
     }
 
     generatePolygons() {
-        for (let i = 0; i < this.count - 1; i++) {
-            for (let j = 0; j < this.count - 1; j++) {
-                if( (i%4 == 1 || i%4 == 0) && (j%4 == 1 || j%4 == 0)) {
-                    this.polygons.push(new Polygon([
-                        i * this.count + j,
-                        (i + 1) * this.count + j,
-                        (i + 1) * this.count + j + 1,
-                        i * this.count + j + 1,
-                    ], this.color));
-                    }
-                else {if ((i%4 == 2 || i%4 == 3) && (j%4 == 2 || j%4 == 3)){
-                    this.polygons.push(new Polygon([
-                        i * this.count + j,
-                        (i + 1) * this.count + j,
-                        (i + 1) * this.count + j + 1,
-                        i * this.count + j + 1,
-                    ], this.color));
-                    }
-                    else {
-                        this.polygons.push(new Polygon([
-                            i * this.count + j,
-                            (i + 1) * this.count + j,
-                            (i + 1) * this.count + j + 1,
-                            i * this.count + j + 1,
-                        ], '1212b0'));
-                        }}
-            }
-
-            if (i%4 == 2 || i%4 == 3){
-                this.polygons.push(new Polygon([
-                    i * this.count,
-                    (i + 1) * this.count - 1,
-                    (i + 2) * this.count - 1,
-                    (i + 1) * this.count,
+        let k = 0;
+    for (let i = 0; i < this.count - 1; i++) {
+        for (let j = 0; j < this.count - 1; j++) {
+            if( (i%4 == 1 || i%4 == 0) && (j%4 == 1 || j%4 == 0)) {
+                this.polygons[k] = (new Polygon([
+                    i * this.count + j,
+                    (i + 1) * this.count + j,
+                    (i + 1) * this.count + j + 1,
+                    i * this.count + j + 1,
                 ], this.color));
-            } else {
-                this.polygons.push(new Polygon([
-                    i * this.count,
-                    (i + 1) * this.count - 1,
-                    (i + 2) * this.count - 1,
-                    (i + 1) * this.count,
-                ], '1212b0'));
-            }
-
-            if (i%4 == 2 || i%4 == 3){
-                this.polygons.push(new Polygon([
-                    i,
-                    this.points.length - this.count + i,
-                    this.points.length - this.count + i + 1,
-                    i + 1,
-                ], this.color))
-            } else {
-                this.polygons.push(new Polygon([
-                    i,
-                    this.points.length - this.count + i,
-                    this.points.length - this.count + i + 1,
-                    i + 1,
-                ], '1212b0'))
-            }
+                }
+            else {if ((i%4 == 2 || i%4 == 3) && (j%4 == 2 || j%4 == 3)){
+                this.polygons[k] = (new Polygon([
+                    i * this.count + j,
+                    (i + 1) * this.count + j,
+                    (i + 1) * this.count + j + 1,
+                    i * this.count + j + 1,
+                ], this.color));
+                }
+                else {
+                    this.polygons[k] = (new Polygon([
+                        i * this.count + j,
+                        (i + 1) * this.count + j,
+                        (i + 1) * this.count + j + 1,
+                        i * this.count + j + 1,
+                    ], '1212b0'));
+                    }}
+            k++;
         }
 
-        this.polygons.push(new Polygon([
-            this.points.length - 1,
-            this.points.length - this.count,
-            0,
-            this.count - 1,
-        ], this.color));
+        if (i%4 == 2 || i%4 == 3){
+            this.polygons[k] = (new Polygon([
+                i * this.count,
+                (i + 1) * this.count - 1,
+                (i + 2) * this.count - 1,
+                (i + 1) * this.count,
+            ], this.color));
+        } else {
+            this.polygons[k] = (new Polygon([
+                i * this.count,
+                (i + 1) * this.count - 1,
+                (i + 2) * this.count - 1,
+                (i + 1) * this.count,
+            ], '1212b0'));
+        }
+
+        if (i%4 == 2 || i%4 == 3){
+            this.polygons[k+1] = (new Polygon([
+                i,
+                this.points.length - this.count + i,
+                this.points.length - this.count + i + 1,
+                i + 1,
+            ], this.color))
+        } else {
+            this.polygons[k+1] = (new Polygon([
+                i,
+                this.points.length - this.count + i,
+                this.points.length - this.count + i + 1,
+                i + 1,
+            ], '1212b0'))
+        }
+        k+=2;
+    }
+
+    this.polygons[k] = (new Polygon([
+        this.points.length - 1,
+        this.points.length - this.count,
+        0,
+        this.count - 1,
+    ], this.color));
     }
 }

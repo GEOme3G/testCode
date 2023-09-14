@@ -42,10 +42,11 @@ class Cylinder extends Figure {
     }
 
     generatePolygons() {
+        let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
                 if( (i%4 == 1 || i%4 == 0) && (j%4 == 1 || j%4 == 0)) {
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                         i * this.count + j,
                         (i + 1) * this.count + j,
                         (i + 1) * this.count + j + 1,
@@ -53,7 +54,7 @@ class Cylinder extends Figure {
                     ], '7722b0'));
                     }
                 else {if ((i%4 == 2 || i%4 == 3) && (j%4 == 2 || j%4 == 3)){
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                         i * this.count + j,
                         (i + 1) * this.count + j,
                         (i + 1) * this.count + j + 1,
@@ -61,30 +62,32 @@ class Cylinder extends Figure {
                     ], '7722b0'));
                     }
                     else {
-                        this.polygons.push(new Polygon([
+                        this.polygons[k] = (new Polygon([
                             i * this.count + j,
                             (i + 1) * this.count + j,
                             (i + 1) * this.count + j + 1,
                             i * this.count + j + 1,
                         ], this.color));
                         }}
+                k++;
             }
             
             if (i%4 == 2 || i%4 == 3){
-            this.polygons.push(new Polygon([
+            this.polygons[k] = (new Polygon([
                 i * this.count,
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
             ], '7722b0'));
         } else {
-            this.polygons.push(new Polygon([
+            this.polygons[k] = (new Polygon([
                 i * this.count,
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
             ], this.color));
         }
+        k++;
         }
     }
 }

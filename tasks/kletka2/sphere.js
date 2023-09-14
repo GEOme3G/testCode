@@ -42,10 +42,11 @@ class Sphere extends Figure {
     }
 
     generatePolygons() {
+        let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
                 if( (i%4 == 1 || i%4 == 0) && (j%4 == 1 || j%4 == 0)) {
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
@@ -53,21 +54,22 @@ class Sphere extends Figure {
                 ], this.color));
                     }
                 else {if ((i%4 == 2 || i%4 == 3) && (j%4 == 2 || j%4 == 3)){
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
                     j + (i + 1) * this.count,
                 ], this.color));
-            }
+                }
                 else {
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                         j + i * this.count,
                         j + 1 + i * this.count,
                         j + 1 + (i + 1) * this.count,
                         j + (i + 1) * this.count,
                     ], '5454b0'));
                     }}
+                k++;
 
                 // this.polygons.push(new Polygon([
                 //     j + i * this.count,
@@ -78,14 +80,14 @@ class Sphere extends Figure {
             }
 
             if (i%4 == 2 || i%4 == 3){
-                this.polygons.push(new Polygon([
+                this.polygons[k] = (new Polygon([
                     this.points.length - i * this.count - 1,
                     this.points.length - (i ? i - 1 : i) * this.count - 1,
                     i * this.count,
                     (i + 1) * this.count,
                 ], this.color));
             } else {
-                this.polygons.push(new Polygon([
+                this.polygons[k] = (new Polygon([
                     this.points.length - i * this.count - 1,
                     this.points.length - (i ? i - 1 : i) * this.count - 1,
                     i * this.count,
@@ -101,20 +103,21 @@ class Sphere extends Figure {
             // ], this.color));
 
             if (i%4 == 1 || i%4 == 0){
-                this.polygons.push(new Polygon([
+                this.polygons[k+1] = (new Polygon([
                     0,
                     this.points.length - i - 1,
                     this.points.length - i - 2,
                     0,
                 ], this.color))
             } else {
-                this.polygons.push(new Polygon([
+                this.polygons[k+1] = (new Polygon([
                     0,
                     this.points.length - i - 1,
                     this.points.length - i - 2,
                     0,
                 ], '5454b0'))
             }
+            k+=2;
 
             // this.polygons.push(new Polygon([
             //     0,
@@ -124,7 +127,7 @@ class Sphere extends Figure {
             // ], this.color))
         }
 
-        this.polygons.push(new Polygon([ // не изменненое
+        this.polygons[k] = (new Polygon([
             0,
             this.points.length - this.count,
             this.count * 2 - 1,

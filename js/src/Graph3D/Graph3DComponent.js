@@ -161,7 +161,7 @@ class Graph3DComponent extends Component {
             let { r, g, b } = polygon.color;
             const { isShadow, dark } = this.math3D.calcShadow(polygon, this.scene, this.LIGHT);
             
-            if (figure.constructor.name === 'ParabolicCylinder') {
+            if (figure.constructor.name === 'ParabolicCylinder') { // ргб
                 const lumen = this.math3D.calcIllumination(polygon.distance,
                     this.LIGHT.lumen * (isShadow ? dark : 1));
                 r = Math.round(r);
@@ -174,6 +174,23 @@ class Graph3DComponent extends Component {
                 g = Math.round(g * lumen);
                 b = Math.round(b * lumen);
             }
+
+            // if (figure.constructor.name == 'Tor') { // область без света
+            //     countH = figure.count;
+            //     if ((polygons.x > countH * 0.2) || (polygons.y > countH * 0.5)) {
+            //         const lumen = this.math3D.calcIllumination(polygon.distance,
+            //             this.LIGHT.lumen * (isShadow ? dark : 1));
+            //         r = Math.round(r * lumen);
+            //         g = Math.round(g * lumen);
+            //         b = Math.round(b * lumen);
+            //     }
+            // } else {
+            //     const lumen = this.math3D.calcIllumination(polygon.distance,
+            //         this.LIGHT.lumen * (isShadow ? dark : 1));
+            //     r = Math.round(r * lumen);
+            //     g = Math.round(g * lumen);
+            //     b = Math.round(b * lumen);
+            // }
 
             this.canvas.polygon(
                 points.map((point) => {

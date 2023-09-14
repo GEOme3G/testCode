@@ -41,14 +41,17 @@ class HyperbolicParaboloid extends Figure {
     }
 
     generatePolygons() {
+        let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
-                this.polygons.push(new Polygon([
+                this.polygons[k] = (new Polygon([
                     i * this.count + j,
                     (i + 1) * this.count + j,
                     (i + 1) * this.count + j + 1,
                     i * this.count + j + 1,
                 ], this.color));
+                
+                k++;
             }
         }
     }

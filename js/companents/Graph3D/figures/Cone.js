@@ -78,15 +78,15 @@ class Cone extends Figure {
                         i * this.count + j + 1,
                     ], '1155b0'));
                     }
-                }
-                    else {
+                }   else {
                         this.polygons[k] =(new Polygon([
                             i * this.count + j,
                             (i + 1) * this.count + j,
                             (i + 1) * this.count + j + 1,
                             i * this.count + j + 1,
                         ], '1122b0'));
-                    }}
+                    }
+                }
                     k++;
                 // this.polygons.push(new Polygon([
                 //     i * this.count + j,
@@ -109,14 +109,15 @@ class Cone extends Figure {
                     (i + 2) * this.count - 1,
                     (i + 1) * this.count,
                 ], '3355b0'));
-            } else {
-                this.polygons[k] =(new Polygon([
-                    i * this.count,
-                    (i + 1) * this.count - 1,
-                    (i + 2) * this.count - 1,
-                    (i + 1) * this.count,
-                ], '0000b0'));
-            }}
+                } else {
+                    this.polygons[k] =(new Polygon([
+                        i * this.count,
+                        (i + 1) * this.count - 1,
+                        (i + 2) * this.count - 1,
+                        (i + 1) * this.count,
+                    ], '0000b0'));
+                }
+            }
             k++;
             // this.polygons.push(new Polygon([
             //     i * this.count,

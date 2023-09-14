@@ -72,7 +72,7 @@ class ParabolicCylinder extends Figure {
                     i * this.count + j + 1,
                 ], this.color));
 
-                this.polygons[k].color = {r: Math.trunc(rgb), b: Math.trunc(rgb), g: 205};
+                this.polygons[k].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
 
                 this.polygons[k+1] = (new Polygon([
                     i * this.count + stepIndex + j,
@@ -81,7 +81,7 @@ class ParabolicCylinder extends Figure {
                     i * this.count + stepIndex + j + 1,
                 ], this.color));
 
-                this.polygons[k+1].color = {r: Math.trunc(rgb), b: Math.trunc(rgb), g: 205};
+                this.polygons[k+1].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
                 k+=2;
             }
         }

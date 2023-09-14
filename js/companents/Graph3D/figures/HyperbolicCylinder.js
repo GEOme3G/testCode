@@ -64,7 +64,7 @@ class HyperbolicCylinder extends Figure {
     }
 
     generatePolygons() {
-
+        let k = 0;
         const sqrCount = Math.pow(this.count, 2);
 
         for (let i = 0; i < this.count - 1; i++) {
@@ -74,13 +74,13 @@ class HyperbolicCylinder extends Figure {
                 //     j >= Math.round(this.count * 0.2) && j <= Math.round(this.count * 0.7) );
                 // if (!isInWindow) {
                 if ((i)%2 !== 0) {
-                this.polygons.push(new Polygon([
+                this.polygons[k] = (new Polygon([
                     i * this.count + j,
                     (i + 1) * this.count + j,
                     (i + 1) * this.count + j + 1,
                     i * this.count + j + 1,
                 ], '8721b0')); } else {
-                    this.polygons.push(new Polygon([
+                    this.polygons[k] = (new Polygon([
                         i * this.count + j,
                         (i + 1) * this.count + j,
                         (i + 1) * this.count + j + 1,
@@ -89,20 +89,20 @@ class HyperbolicCylinder extends Figure {
                 }
                 //
                 if ((i+j)%2 == 0) {
-                this.polygons.push(new Polygon([
+                this.polygons[k+1] = (new Polygon([
                     i * this.count + sqrCount + j,
                     (i + 1) * this.count + sqrCount + j,
                     (i + 1) * this.count + sqrCount + j + 1,
                     i * this.count + sqrCount + j + 1,
                 ], '3564b0')); } else {
-                    this.polygons.push(new Polygon([
+                    this.polygons[k+1] = (new Polygon([
                         i * this.count + sqrCount + j,
                         (i + 1) * this.count + sqrCount + j,
                         (i + 1) * this.count + sqrCount + j + 1,
                         i * this.count + sqrCount + j + 1,
                     ], '4500b0'));
                 }
-                
+                k+=2
             }
         }
     // }

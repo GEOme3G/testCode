@@ -42,32 +42,37 @@ class Sphere extends Figure {
     }
 
     generatePolygons() {
+        let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
-                this.polygons.push(new Polygon([
+                this.polygons[k] = (new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
                     j + (i + 1) * this.count,
                 ], this.color));
+
+                k++;
             }
 
-            this.polygons.push(new Polygon([
+            this.polygons[k] = (new Polygon([
                 this.points.length - i * this.count - 1,
                 this.points.length - (i ? i - 1 : i) * this.count - 1,
                 i * this.count,
                 (i + 1) * this.count,
             ], this.color));
 
-            this.polygons.push(new Polygon([
+            this.polygons[k+1] = (new Polygon([
                 0,
                 this.points.length - i - 1,
                 this.points.length - i - 2,
                 0,
             ], this.color))
+
+            k+=2;
         }
 
-        this.polygons.push(new Polygon([
+        this.polygons[k] = (new Polygon([
             0,
             this.points.length - this.count,
             this.count * 2 - 1,

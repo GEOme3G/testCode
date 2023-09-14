@@ -95,6 +95,8 @@ class DoubleCavityHyperboloid extends Figure {
                 (i + 2) * this.count + sqrCount - 1,
                 (i + 1) * this.count + sqrCount,
             ], this.color);
+
+            k+=2;
         }
     }
     
