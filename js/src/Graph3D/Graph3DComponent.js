@@ -106,7 +106,7 @@ class Graph3DComponent extends Component {
                 }
             });
             this.math3D.sortByArtistAlgoritm(polygons, this.scene[0]);
-            // console.log()
+            // console.log(this.scene[0])
             this.drawPolygons(polygons, this.scene[0]);
         }
 
@@ -154,7 +154,6 @@ class Graph3DComponent extends Component {
         polygons.forEach((polygon) => {
             
             const points = [];
-            const figura = figure.constructor.name;
             for (let i = 0; i < polygon.points.length; i++) {
                 points.push(this.scene[polygon.figureIndex].points[polygon.points[i]]);
             }
@@ -162,8 +161,12 @@ class Graph3DComponent extends Component {
             let { r, g, b } = polygon.color;
             const { isShadow, dark } = this.math3D.calcShadow(polygon, this.scene, this.LIGHT);
             
-            if (figura === 'ParabolicCylinder') {
-                
+            if (figure.constructor.name === 'ParabolicCylinder') {
+                const lumen = this.math3D.calcIllumination(polygon.distance,
+                    this.LIGHT.lumen * (isShadow ? dark : 1));
+                r = Math.round(r);
+                g = Math.round(g);
+                b = Math.round(b);
             } else {
                 const lumen = this.math3D.calcIllumination(polygon.distance,
                     this.LIGHT.lumen * (isShadow ? dark : 1));
