@@ -46,6 +46,10 @@ class Ellipsoid extends Figure {
     generatePolygons() {
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
+                // this.color = '#'
+                // for (let r=0;r<6;r++) {
+                //     this.color += Math.floor(Math.random() * 16).toString(16)
+                // }
                 this.polygons.push(new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,

@@ -41,7 +41,6 @@ class UI3DComponent extends Component {
     }
 
     addFigureHandler(event) {
-        console.log(event.target.dataset.figure)
         const figure = event.target.dataset.figure;
         document.getElementById('figuresList').classList.add('hide');
         this.callbacks.addFigure(figure, this.num);

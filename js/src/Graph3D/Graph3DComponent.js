@@ -316,7 +316,7 @@ class Graph3DComponent extends Component {
     }
 
     delFigure(num) {
-        this.scene[num] = null;
+        this.scene[num] = 0;
     }
 
     changeLightPower(value) {
