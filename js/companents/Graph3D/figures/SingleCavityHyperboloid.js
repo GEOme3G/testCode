@@ -1,13 +1,13 @@
 class SingleCavityHyperboloid extends Figure {
     constructor({
         color = '#129e25',
-        centre,
+        x, y, centre,
         count = 20,
         focusOx = 5,
         focusOy = 10,
         focusOz = 5,
     }) {
-        super({ color, centre });
+        super({ color, x, y, centre });
         this.count = count;
         this.focusOx = focusOx;
         this.focusOy = focusOy;
@@ -53,7 +53,7 @@ class SingleCavityHyperboloid extends Figure {
                     (i + 1) * this.count + j,
                     (i + 1) * this.count + j + 1,
                     i * this.count + j + 1,
-                ], this.color));
+                ], this.color, i, j));
                 k++;
             }
 
@@ -62,7 +62,7 @@ class SingleCavityHyperboloid extends Figure {
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
-            ], this.color));
+            ], this.color, i));
             k++;
         }
     }

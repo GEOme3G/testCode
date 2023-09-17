@@ -2,15 +2,18 @@ class Polygon {
     constructor(
         points,
         color = '#ee8448',
-        centre = new Point,
+        x, y,
+        centre = new Point
     ) {
         this.points = points;
-        this.centre = centre;
         this.distance = 0;
+        this.centre = centre;
         this.lumen = 1;
         this.color = this.hexToRGB(color);
         this.figureIndex;
         this.radius = 0;
+        this.x = 0;
+        this.y = 0;
     }
 
     hexToRGB(hex) {

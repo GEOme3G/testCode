@@ -1,13 +1,13 @@
 class DoubleCavityHyperboloid extends Figure {
     constructor({
         color = '#40cac7',
-        centre,
+        centre, x, y,
         count = 35,
         focusOx = 10,
         focusOy = 10,
         focusOz = 10,
     }) {
-        super({ color, centre });
+        super({ color, centre, x, y});
         this.count = count;
         this.focusOx = focusOx;
         this.focusOy = focusOy;
@@ -70,14 +70,14 @@ class DoubleCavityHyperboloid extends Figure {
                     (i + 1) * this.count + j,
                     (i + 1) * this.count + j + 1,
                     i * this.count + j + 1,
-                ], this.color);
+                ], this.color, i, j);
                 
                 this.polygons[k+1] = new Polygon([
                     i * this.count + sqrCount + j,
                     (i + 1) * this.count + sqrCount + j,
                     (i + 1) * this.count + sqrCount + j + 1,
                     i * this.count + sqrCount + j + 1,
-                ], this.color);
+                ], this.color, i, j);
                 k+=2;
             }
 
@@ -87,17 +87,16 @@ class DoubleCavityHyperboloid extends Figure {
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
-            ], this.color);
+            ], this.color, i);
 
             this.polygons[k+1] = new Polygon([
                 i * this.count + sqrCount,
                 (i + 1) * this.count + sqrCount - 1,
                 (i + 2) * this.count + sqrCount - 1,
                 (i + 1) * this.count + sqrCount,
-            ], this.color);
+            ], this.color, i);
 
             k+=2;
         }
     }
-    
 }

@@ -21,7 +21,7 @@ class Graph3DComponent extends Component {
 
         this.LIGHT = new Light(20, 20, -10);
 
-        this.scene = [new Cone({})];
+        this.scene = [];
 
         this.WIN = {
             WIDTH: 20 * this.prop,
@@ -106,7 +106,6 @@ class Graph3DComponent extends Component {
                 }
             });
             this.math3D.sortByArtistAlgoritm(polygons, this.scene[0]);
-            // console.log(this.scene[0])
             this.drawPolygons(polygons, this.scene[0]);
         }
 
@@ -152,7 +151,6 @@ class Graph3DComponent extends Component {
 
     drawPolygons(polygons, figure) {
         polygons.forEach((polygon) => {
-            
             const points = [];
             for (let i = 0; i < polygon.points.length; i++) {
                 points.push(this.scene[polygon.figureIndex].points[polygon.points[i]]);
@@ -175,22 +173,21 @@ class Graph3DComponent extends Component {
                 b = Math.round(b * lumen);
             }
 
-            // if (figure.constructor.name == 'Tor') { // область без света
-            //     countH = figure.count;
-            //     if ((polygons.x > countH * 0.2) || (polygons.y > countH * 0.5)) {
-            //         const lumen = this.math3D.calcIllumination(polygon.distance,
-            //             this.LIGHT.lumen * (isShadow ? dark : 1));
-            //         r = Math.round(r * lumen);
-            //         g = Math.round(g * lumen);
-            //         b = Math.round(b * lumen);
-            //     }
-            // } else {
-            //     const lumen = this.math3D.calcIllumination(polygon.distance,
-            //         this.LIGHT.lumen * (isShadow ? dark : 1));
-            //     r = Math.round(r * lumen);
-            //     g = Math.round(g * lumen);
-            //     b = Math.round(b * lumen);
-            // }
+            if (figure.constructor.name == 'Tor') { // область без света
+                if ((polygon.x > figure.count * 0.2) || (polygon.y > figure.count * 0.5)) {
+                    const lumen = this.math3D.calcIllumination(polygon.distance,
+                        this.LIGHT.lumen * (isShadow ? dark : 1));
+                    r = Math.round(r);
+                    g = Math.round(g);
+                    b = Math.round(b);
+                } else {
+                const lumen = this.math3D.calcIllumination(polygon.distance,
+                    this.LIGHT.lumen * (isShadow ? dark : 1));
+                r = Math.round(r * lumen);
+                g = Math.round(g * lumen);
+                b = Math.round(b * lumen);
+                }
+            }
 
             this.canvas.polygon(
                 points.map((point) => {
