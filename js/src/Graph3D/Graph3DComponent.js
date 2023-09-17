@@ -166,26 +166,26 @@ class Graph3DComponent extends Component {
                 g = Math.round(g);
                 b = Math.round(b);
             } else {
-                const lumen = this.math3D.calcIllumination(polygon.distance,
-                    this.LIGHT.lumen * (isShadow ? dark : 1));
-                r = Math.round(r * lumen);
-                g = Math.round(g * lumen);
-                b = Math.round(b * lumen);
-            }
-
-            if (figure.constructor.name == 'Tor') { // область без света
-                if ((polygon.x > figure.count * 0.2) || (polygon.y > figure.count * 0.5)) {
+                if (figure.constructor.name == 'SingleCavityHyperboloid') { // область без света
+                    if ((polygon.x > figure.count * 0.2) || (polygon.y > figure.count * 0.5)) {
+                        const lumen = this.math3D.calcIllumination(polygon.distance,
+                            this.LIGHT.lumen * (isShadow ? dark : 1));
+                        r = Math.round(r);
+                        g = Math.round(g);
+                        b = Math.round(b);
+                    } else {
+                        const lumen = this.math3D.calcIllumination(polygon.distance,
+                            this.LIGHT.lumen * (isShadow ? dark : 1));
+                        r = Math.round(r * lumen);
+                        g = Math.round(g * lumen);
+                        b = Math.round(b * lumen);
+                    }
+                } else {
                     const lumen = this.math3D.calcIllumination(polygon.distance,
                         this.LIGHT.lumen * (isShadow ? dark : 1));
-                    r = Math.round(r);
-                    g = Math.round(g);
-                    b = Math.round(b);
-                } else {
-                const lumen = this.math3D.calcIllumination(polygon.distance,
-                    this.LIGHT.lumen * (isShadow ? dark : 1));
-                r = Math.round(r * lumen);
-                g = Math.round(g * lumen);
-                b = Math.round(b * lumen);
+                    r = Math.round(r * lumen);
+                    g = Math.round(g * lumen);
+                    b = Math.round(b * lumen);
                 }
             }
 

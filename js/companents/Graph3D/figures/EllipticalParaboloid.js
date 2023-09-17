@@ -48,23 +48,39 @@ class EllipticalParaboloid extends Figure {
         let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
-                this.polygons[k] = (new Polygon([
-                    i * this.count + j,
-                    (i + 1) * this.count + j,
-                    (i + 1) * this.count + j + 1,
-                    i * this.count + j + 1,
-                ], this.color));
+                if ((i+j)%2 == 0) {
+                    this.polygons[k] = (new Polygon([
+                        i * this.count + j,
+                        (i + 1) * this.count + j,
+                        (i + 1) * this.count + j + 1,
+                        i * this.count + j + 1,
+                    ], this.color));
+                } else {
+                    this.polygons[k] = (new Polygon([
+                        i * this.count + j,
+                        (i + 1) * this.count + j,
+                        (i + 1) * this.count + j + 1,
+                        i * this.count + j + 1,
+                    ], '9009b0'));
+                }
 
                 k++;
             }
-
-            this.polygons[k] = (new Polygon([
-                i * this.count,
-                (i + 1) * this.count - 1,
-                (i + 2) * this.count - 1,
-                (i + 1) * this.count,
-            ], this.color));
-
+            if (i%2 == 1) {
+                this.polygons[k] = (new Polygon([
+                    i * this.count,
+                    (i + 1) * this.count - 1,
+                    (i + 2) * this.count - 1,
+                    (i + 1) * this.count,
+                ], this.color));
+            } else {
+                this.polygons[k] = (new Polygon([
+                    i * this.count,
+                    (i + 1) * this.count - 1,
+                    (i + 2) * this.count - 1,
+                    (i + 1) * this.count,
+                ], '9009b0'));
+            }
             k++;
         }
     }

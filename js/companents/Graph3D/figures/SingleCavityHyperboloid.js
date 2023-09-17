@@ -62,7 +62,7 @@ class SingleCavityHyperboloid extends Figure {
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
-            ], this.color, i));
+            ], this.color, i, this.count - 1));
             k++;
         }
     }
