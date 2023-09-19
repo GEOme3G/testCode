@@ -50,7 +50,7 @@ class Sphere extends Figure {
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
                     j + (i + 1) * this.count,
-                ], this.color));
+                ], this.color, i, j));
 
                 k++;
             }
@@ -60,14 +60,14 @@ class Sphere extends Figure {
                 this.points.length - (i ? i - 1 : i) * this.count - 1,
                 i * this.count,
                 (i + 1) * this.count,
-            ], this.color));
+            ], this.color, i, this.count - 1));
 
             this.polygons[k+1] = (new Polygon([
                 0,
                 this.points.length - i - 1,
                 this.points.length - i - 2,
                 0,
-            ], this.color))
+            ], this.color, i, this.count - 1))
 
             k+=2;
         }
@@ -77,6 +77,6 @@ class Sphere extends Figure {
             this.points.length - this.count,
             this.count * 2 - 1,
             0,
-        ], this.color))
+        ], this.color, this.count - 1, this.count - 1))
     }
 }

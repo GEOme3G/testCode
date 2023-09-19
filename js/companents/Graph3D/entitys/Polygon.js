@@ -12,8 +12,8 @@ class Polygon {
         this.color = this.hexToRGB(color);
         this.figureIndex;
         this.radius = 0;
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
     }
 
     hexToRGB(hex) {

@@ -50,7 +50,7 @@ class Tor extends Figure {
                     (i + 1) * this.count + j,
                     (i + 1) * this.count + j + 1,
                     i * this.count + j + 1,
-                ], this.color));
+                ], this.color, i, j));
 
                 k++;
             }
@@ -60,14 +60,14 @@ class Tor extends Figure {
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
-            ], this.color));
+            ], this.color, i, this.count - 1));
 
             this.polygons[k+1] = (new Polygon([
                 i,
                 this.points.length - this.count + i,
                 this.points.length - this.count + i + 1,
                 i + 1,
-            ], this.color))
+            ], this.color, i, this.count - 1));
 
             k+= 2;
         }
@@ -77,6 +77,6 @@ class Tor extends Figure {
             this.points.length - this.count,
             0,
             this.count - 1,
-        ], this.color));
+        ], this.color, this.count - 1, this.count - 1));
     }
 }

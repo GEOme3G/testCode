@@ -87,14 +87,14 @@ class DoubleCavityHyperboloid extends Figure {
                 (i + 1) * this.count - 1,
                 (i + 2) * this.count - 1,
                 (i + 1) * this.count,
-            ], this.color, i);
+            ], this.color, i, this.count - 1);
 
             this.polygons[k+1] = new Polygon([
                 i * this.count + sqrCount,
                 (i + 1) * this.count + sqrCount - 1,
                 (i + 2) * this.count + sqrCount - 1,
                 (i + 1) * this.count + sqrCount,
-            ], this.color, i);
+            ], this.color, i, this.count - 1);
 
             k+=2;
         }
