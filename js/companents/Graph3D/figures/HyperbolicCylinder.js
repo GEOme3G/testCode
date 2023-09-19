@@ -69,23 +69,30 @@ class HyperbolicCylinder extends Figure {
 
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
-                // const isInWindow = (          // это нужно чтобы вырезать область 20% на 70%
-                //     i >= Math.round(this.count * 0.2) && i <= Math.round(this.count * 0.7) &&
-                //     j >= Math.round(this.count * 0.2) && j <= Math.round(this.count * 0.7) );
-                // if (!isInWindow) {
-                if ((i)%2 !== 0) {
-                this.polygons[k] = (new Polygon([
-                    i * this.count + j,
-                    (i + 1) * this.count + j,
-                    (i + 1) * this.count + j + 1,
-                    i * this.count + j + 1,
-                ], '8721b0')); } else {
+                if ((i % 2 !== 0)) {
                     this.polygons[k] = (new Polygon([
                         i * this.count + j,
                         (i + 1) * this.count + j,
                         (i + 1) * this.count + j + 1,
                         i * this.count + j + 1,
-                    ], '1244b0'));
+                    ], '8721b0'));
+                } else {
+                    if ((i%4 == 0 && j == 0) || (i%4 == 2 && j == this.count - 2)) {
+                        this.polygons[k] = (new Polygon([
+                            i * this.count + j,
+                            (i + 1) * this.count + j,
+                            (i + 1) * this.count + j + 1,
+                            i * this.count + j + 1,
+                        ], '8721b0')); 
+                    }
+                    else {
+                        this.polygons[k] = (new Polygon([
+                            i * this.count + j,
+                            (i + 1) * this.count + j,
+                            (i + 1) * this.count + j + 1,
+                            i * this.count + j + 1,
+                        ], '1244b0'));
+                    }
                 }
                 //
                 if ((i+j)%2 == 0) {
@@ -105,6 +112,5 @@ class HyperbolicCylinder extends Figure {
                 k+=2
             }
         }
-    // }
     }
 }
