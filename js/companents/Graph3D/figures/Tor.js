@@ -45,6 +45,31 @@ class Tor extends Figure {
         let k = 0
         for (let i = 0; i < this.count - 1; i++) {
             for (let j = 0; j < this.count - 1; j++) {
+                if (i%7 == 0) {
+                    this.color = 'ff0000';
+                }
+                else if (i%7 == 1) {
+                    this.color = 'ff9900';
+                }
+                else if (i%7 == 2) {
+                    this.color = 'ffff00';
+                }
+                else if (i%7 == 3) {
+                    this.color = '00ff00';
+                }
+                else if (i%7 == 4) {
+                    this.color = '00ffff';
+                }
+                else if (i%7 == 5) {
+                    this.color = '0000ff';
+                }
+                else if (i%7 == 6) {
+                    this.color = 'ff00ff';
+                }
+                else {
+                    this.color = '#482153';
+                }
+
                 this.polygons[k] = (new Polygon([
                     i * this.count + j,
                     (i + 1) * this.count + j,
@@ -54,7 +79,7 @@ class Tor extends Figure {
 
                 k++;
             }
-
+            
             this.polygons[k] = (new Polygon([
                 i * this.count,
                 (i + 1) * this.count - 1,
@@ -67,7 +92,7 @@ class Tor extends Figure {
                 this.points.length - this.count + i,
                 this.points.length - this.count + i + 1,
                 i + 1,
-            ], this.color, i, this.count - 1));
+            ], '0000ff', i, this.count - 1));
 
             k+= 2;
         }
@@ -77,6 +102,6 @@ class Tor extends Figure {
             this.points.length - this.count,
             0,
             this.count - 1,
-        ], this.color, this.count - 1, this.count - 1));
+        ], '0000ff', this.count - 1, this.count - 1));
     }
 }
