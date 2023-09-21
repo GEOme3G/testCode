@@ -77,7 +77,7 @@ class Ellipsoid extends Figure {
                     this.points.length - (i ? i - 1 : i) * this.count - 1,
                     i * this.count,
                     (i + 1) * this.count,
-                ], this.color));
+                ], '9999b0'));
             }
 
             this.polygons[k+1] = (new Polygon([
