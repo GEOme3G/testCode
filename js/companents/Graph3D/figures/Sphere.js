@@ -44,6 +44,7 @@ class Sphere extends Figure {
     generatePolygons() {
         let k = 0;
         for (let i = 0; i < this.count - 1; i++) {
+            let rgb = i*255/this.count;
             for (let j = 0; j < this.count - 1; j++) {
                 this.polygons[k] = (new Polygon([
                     j + i * this.count,
@@ -52,6 +53,7 @@ class Sphere extends Figure {
                     j + (i + 1) * this.count,
                 ], this.color, i, j));
 
+                this.polygons[k].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
                 k++;
             }
 
@@ -62,12 +64,16 @@ class Sphere extends Figure {
                 (i + 1) * this.count,
             ], this.color, i, this.count - 1));
 
+            this.polygons[k].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
+
             this.polygons[k+1] = (new Polygon([
                 0,
                 this.points.length - i - 1,
                 this.points.length - i - 2,
                 0,
             ], this.color, i, this.count - 1))
+
+            this.polygons[k+1].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
 
             k+=2;
         }
@@ -78,5 +84,6 @@ class Sphere extends Figure {
             this.count * 2 - 1,
             0,
         ], this.color, this.count - 1, this.count - 1))
+        this.polygons[k].color = {r: 205, b: Math.trunc(255/this.count), g: Math.trunc(255/this.count)};
     }
 }
