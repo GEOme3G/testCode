@@ -17,17 +17,27 @@ class Ellipsoid extends Figure {
     }
 
     generatePoints() {
-        const propI = 2 * Math.PI / this.count;
-        const propJ = Math.PI / this.count
+        const prop = 2 * Math.PI / this.count;
         for (let i = 0; i < this.count; i++) {
             for (let j = 0; j < this.count; j++) {
                 this.points.push(new Point(
-                    this.centre.x + this.focusOx * Math.sin(i * propI) * Math.cos(j * propJ),
-                    this.centre.y + this.focusOy * Math.cos(i * propI),
-                    this.centre.z + this.focusOz * Math.sin(i * propI) * Math.sin(j * propJ),
+                    this.centre.x + this.focusOx * Math.sin(i * prop) * Math.cos(j * prop),
+                    this.centre.y + this.focusOy * Math.cos(i * prop),
+                    this.centre.z + this.focusOz * Math.sin(i * prop) * Math.sin(j * prop),
                 ));
             }
         }
+        // const propI = 2 * Math.PI / this.count;
+        // const propJ = Math.PI / this.count
+        // for (let i = 0; i < this.count; i++) {
+        //     for (let j = 0; j < this.count; j++) {
+        //         this.points.push(new Point(
+        //             this.centre.x + this.focusOx * Math.sin(i * propI) * Math.cos(j * propJ),
+        //             this.centre.y + this.focusOy * Math.cos(i * propI),
+        //             this.centre.z + this.focusOz * Math.sin(i * propI) * Math.sin(j * propJ),
+        //         ));
+        //     }
+        // }
     }
 
     generateEdges() {
@@ -45,56 +55,37 @@ class Ellipsoid extends Figure {
 
     generatePolygons() {
         let k = 0;
-        for (let i = 0; i < this.count - 1; i++) {
+        for (let i = 0; i < this.count/2; i++) {
+            let rgb = 2 * i*255/this.count;
             for (let j = 0; j < this.count - 1; j++) {
                 // this.color = '#'
                 // for (let r=0;r<6;r++) {
                 //     this.color += Math.floor(Math.random() * 16).toString(16)
                 // }
-                if ((i < 7 && i >= 2 && j <= 1)) {
-                    
+                if (j === this.count - 2) {
+                    this.polygons[k] = (new Polygon([
+                        j + i * this.count + 1,
+                        0 + i * this.count,
+                        0 + (i + 1) * this.count,
+                        j + (i + 1) * this.count + 1,
+                    ], '#ff00ff', i, j));
+    
+                    this.polygons[k].color = {r: 255, b: Math.trunc(rgb), g: Math.trunc(rgb)};
+                    k++;
                 }
-                else if ((i <= this.count - 3 && i > this.count - 8) && (j <= 4)) {
-                    
-                } 
-                else if ((i <= this.count - 3 && i > this.count - 8) && j >= this.count - 3){
-                    
-                } else {
                 this.polygons[k] = (new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
                     j + (i + 1) * this.count,
                 ], this.color));
-                }
+
+                this.polygons[k].color = {r: 255, b: Math.trunc(rgb), g: Math.trunc(rgb)};
+
                 k++;
             }
-            if (i > 1 && i <= 6) {
-            
-            } else {
-                this.polygons[k] = (new Polygon([
-                    this.points.length - i * this.count - 1,
-                    this.points.length - (i ? i - 1 : i) * this.count - 1,
-                    i * this.count,
-                    (i + 1) * this.count,
-                ], this.color));
-            }
-
-            this.polygons[k+1] = (new Polygon([
-                0,
-                this.points.length - i - 1,
-                this.points.length - i - 2,
-                0,
-            ], this.color))
-
-            k+=2;
         }
 
-        this.polygons[k] = (new Polygon([
-            0,
-            this.points.length - this.count,
-            this.count * 2 - 1,
-            0,
-        ], this.color))
+        
     }
 }

@@ -1,7 +1,7 @@
 class Sphere extends Figure {
     constructor({
         radius = 10,
-        count = 20,
+        count = 30,
         color = "#532190",
         centre
     }) {
@@ -14,14 +14,14 @@ class Sphere extends Figure {
     }
 
     generatePoints() {
-        const propI = 2 * Math.PI / this.count;
-        const propJ = Math.PI / this.count
+
+        const prop = 2 * Math.PI / this.count;
         for (let i = 0; i < this.count; i++) {
             for (let j = 0; j < this.count; j++) {
                 this.points.push(new Point(
-                    this.centre.x + this.radius * Math.sin(i * propI) * Math.cos(j * propJ),
-                    this.centre.y + this.radius * Math.cos(i * propI),
-                    this.centre.z + this.radius * Math.sin(i * propI) * Math.sin(j * propJ),
+                    this.centre.x + this.radius * Math.sin(i * prop) * Math.cos(j * prop),
+                    this.centre.y + this.radius * Math.cos(i * prop),
+                    this.centre.z +  this.radius * Math.sin(i * prop) * Math.sin(j * prop),
                 ));
             }
         }
@@ -43,47 +43,32 @@ class Sphere extends Figure {
 
     generatePolygons() {
         let k = 0;
-        for (let i = 0; i < this.count - 1; i++) {
-            let rgb = i*255/this.count;
-            for (let j = 0; j < this.count - 1; j++) {
+        let rgb = 0;
+        for (let i = 0; i < this.count / 2 ; i++) {
+            rgb = 2 * i*255/this.count;
+            for (let j = 0; j < this.count - 1 ; j++) {
+                
                 this.polygons[k] = (new Polygon([
                     j + i * this.count,
                     j + 1 + i * this.count,
                     j + 1 + (i + 1) * this.count,
                     j + (i + 1) * this.count,
-                ], this.color, i, j));
-
-                this.polygons[k].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
+                ], '#ff00ff', i, j));
+                this.polygons[k].color = {r: 255, b: Math.trunc(rgb), g: Math.trunc(rgb)};
                 k++;
+                if (j === this.count - 2) {
+                    this.polygons[k] = (new Polygon([
+                        j + i * this.count + 1,
+                        0 + i * this.count,
+                        0 + (i + 1) * this.count,
+                        j + (i + 1) * this.count + 1,
+                    ], '#ff00ff', i, j));
+    
+                    this.polygons[k].color = {r: 255, b: Math.trunc(rgb), g: Math.trunc(rgb)};
+                    k++;
+                }
+            
             }
-
-            this.polygons[k] = (new Polygon([
-                this.points.length - i * this.count - 1,
-                this.points.length - (i ? i - 1 : i) * this.count - 1,
-                i * this.count,
-                (i + 1) * this.count,
-            ], this.color, i, this.count - 1));
-
-            this.polygons[k].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
-
-            this.polygons[k+1] = (new Polygon([
-                0,
-                this.points.length - i - 1,
-                this.points.length - i - 2,
-                0,
-            ], this.color, i, this.count - 1))
-
-            this.polygons[k+1].color = {r: 205, b: Math.trunc(rgb), g: Math.trunc(rgb)};
-
-            k+=2;
         }
-
-        this.polygons[k] = (new Polygon([
-            0,
-            this.points.length - this.count,
-            this.count * 2 - 1,
-            0,
-        ], this.color, this.count - 1, this.count - 1))
-        this.polygons[k].color = {r: 205, b: Math.trunc(255/this.count), g: Math.trunc(255/this.count)};
     }
 }
